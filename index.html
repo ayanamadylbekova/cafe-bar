@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>L'Ambre · Lounge & Bar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Элегантный шрифт с засечками для заголовков и стильный гротеск для деталей -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    /* Цветовая палитра "Тёмный бар / Мишлен" */
+    --bg-dark: #0f0f0f;       /* Глубокий черный */
+    --bg-card: #181818;       /* Карточки */
+    --bg-overlay: rgba(15, 15, 15, 0.9);
+    --text-main: #e8e6e3;     /* Мягкий белый */
+    --text-muted: #888888;
+    --accent: #c49a6c;        /* Латунь / коньячный оттенок */
+    --accent-glow: rgba(196, 154, 108, 0.2);
+    --border: #2a2a2a;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Jost', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-weight: 300;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  button { cursor: pointer; font-family: inherit; border: none; outline: none; background: none; }
+
+  /* ===== ШАПКА ===== */
+  .header {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+  }
+  .nav-links a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ccc;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .btn-book {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s;
+  }
+  .btn-book:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+
+  /* ===== HERO (Атмосферное фото бара) ===== */
+  .hero {
+    height: 100vh;
+    min-height: 600px;
+    background: linear-gradient(rgba(15,15,15,0.5), rgba(15,15,15,0.9)), url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=2000&auto=format&fit=crop') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .hero-subtitle {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: 80px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .hero p {
+    font-size: 15px;
+    max-width: 500px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #bbb;
+  }
+  .hero-btn {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 15px 40px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s;
+  }
+  .hero-btn:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  /* ===== БЛОК ЦИТАТЫ (Атмосфера) ===== */
+  .quote-section {
+    padding: 120px 20px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .quote-section h2 {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: #ddd;
+  }
+  .quote-section p {
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .divider {
+    width: 1px;
+    height: 60px;
+    background: var(--accent);
+    margin: 40px auto;
+    opacity: 0.5;
+  }
+
+  /* ===== ЗАГОЛОВКИ РАЗДЕЛОВ ===== */
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 300;
+    color: #fff;
+  }
+  .section-desc {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== МЕНЮ ===== */
+  .menu-section {
+    padding: 80px 20px 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Фильтры */
+  .categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  .cat-btn {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  /* Сетка блюд/напитков */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px 40px;
+  }
+  .food-card {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+  .food-card:hover {
+    transform: translateY(-5px);
+  }
+  .food-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    filter: grayscale(30%); /* Легкий эффект "кинематографичности" */
+    transition: filter 0.4s;
+  }
+  .food-card:hover .food-img {
+    filter: grayscale(0%);
+  }
+  .food-info {
+    flex: 1;
+  }
+  .food-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .food-title {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 400;
+    color: #fff;
+  }
+  .food-price {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .food-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ===== ПОИСК ===== */
+  .search-container {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .search-container input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .search-container input:focus {
+    border-bottom-color: var(--accent);
+  }
+  .search-container input::placeholder {
+    color: #555;
+    letter-spacing: 1px;
+  }
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 18px;
+    padding: 40px;
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
+  /* ===== ПОДВАЛ ===== */
+  .footer {
+    background: #080808;
+    padding: 100px 50px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto 80px;
+  }
+  .footer-col h4 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+  }
+  .footer-col p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+  .copyright {
+    font-size: 11px;
+    color: #444;
+    border-top: 1px solid #222;
+    padding-top: 30px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== МОДАЛКА БРОНИ ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--bg-card);
+    width: 100%;
+    max-width: 480px;
+    padding: 60px 50px;
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--border);
+  }
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .modal h3 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 25px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: #fff;
+    font-family: var(--font-sans);
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    border-bottom-color: var(--accent);
+  }
+  .form-group select option { background: var(--bg-dark); color: #fff; }
+  .modal-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    padding: 18px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    transition: 0.3s;
+  }
+  .modal-btn:hover { background: #d4ac7f; }
+  .close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .close-btn:hover { color: #fff; }
+
+  /* ===== АДАПТИВНОСТЬ ===== */
+  @media (max-width: 1024px) {
+    .header { padding: 20px 30px; }
+    .hero h1 { font-size: 60px; }
+    .food-grid { gap: 40px 20px; }
+  }
+  @media (max-width: 768px) {
+    .header { flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 46px; }
+    .hero p { font-size: 14px; }
+    .food-grid { grid-template-columns: 1fr; gap: 40px; }
+    .food-card { flex-direction: column; text-align: center; gap: 20px; }
+    .food-img { width: 180px; height: 180px; }
+    .food-header { flex-direction: column; gap: 5px; }
+    .quote-section { padding: 80px 20px; }
+    .quote-section h2 { font-size: 28px; }
+    .section-title { font-size: 36px; }
+    .modal { padding: 40px 25px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header class="header">
+  <div class="logo">L'Ambre</div>
+  <nav class="nav-links">
+    <a href="#menu">Меню бара</a>
+    <a href="#kitchen">Кухня</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <button class="btn-book" onclick="openModal()">Забронировать</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-subtitle">Lounge & Cocktail Bar</div>
+  <h1>Искусство<br>смешивать</h1>
+  <p>Авторские коктейли, редкие вина и изысканные закуски в атмосфере приглушенного света и джаза.</p>
+  <button class="hero-btn" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">Барная карта</button>
+</section>
+
+<!-- ФИЛОСОФИЯ -->
+<section class="quote-section">
+  <h2>«Хороший бар — это место, где время течет медленнее, а вкус становится глубже»</h2>
+  <div class="divider"></div>
+  <p>Наша философия</p>
+</section>
+
+<!-- БАРНАЯ КАРТА (КОКТЕЙЛИ, ВИНА, КРЕПКИЙ АЛКОГОЛЬ) -->
+<section class="menu-section" id="menu">
+  <h2 class="section-title">Барная карта</h2>
+  <p class="section-desc">Авторские коктейли и редкие напитки</p>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Поиск напитка..." oninput="filterFood()">
+  </div>
+
+  <div class="categories" id="categories">
+    <button class="cat-btn active" onclick="filterCategory('all')">Все</button>
+    <button class="cat-btn" onclick="filterCategory('cocktails')">Коктейли</button>
+    <button class="cat-btn" onclick="filterCategory('wines')">Вина</button>
+    <button class="cat-btn" onclick="filterCategory('spirits')">Крепкий алкоголь</button>
+  </div>
+
+  <div class="food-grid" id="foodGrid"></div>
+</section>
+
+<!-- КУХНЯ (ЗАКУСКИ К БАРУ) -->
+<section class="menu-section" id="kitchen" style="background: #0a0a0a; max-width: 100%; padding-left: 10%; padding-right: 10%;">
+  <h2 class="section-title">Кухня</h2>
+  <p class="section-desc">Идеальные закуски к вашим напиткам</p>
+
+  <div class="categories" id="kitchenCategories">
+    <button class="cat-btn active" onclick="filterKitchen('all')">Все</button>
+    <button class="cat-btn" onclick="filterKitchen('snacks')">Закуски</button>
+    <button class="cat-btn" onclick="filterKitchen('mains')">Горячее</button>
+    <button class="cat-btn" onclick="filterKitchen('desserts')">Десерты</button>
+  </div>
+
+  <div class="food-grid" id="kitchenGrid"></div>
+</section>
+
+<!-- ПОДВАЛ -->
+<footer class="footer" id="contacts">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>L'Ambre Bar</h4>
+      <p>ул. Пушкина, 10<br>Бишкек, Кыргызстан</p>
+    </div>
+    <div class="footer-col">
+      <h4>Бронирование</h4>
+      <p>+996 (555) 12-34-56</p>
+      <p>hello@lambre.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Часы работы</h4>
+      <p>Пн-Чт: 18:00 – 01:00</p>
+      <p>Пт-Сб: 18:00 – 03:00</p>
+      <p>Вс: Выходной</p>
+    </div>
+  </div>
+  <div class="copyright">
+    ©️ 2025 L'Ambre Lounge Bar. Все права защищены.
+  </div>
+</footer>
+
+<!-- МОДАЛКА -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <h3>Бронирование стола</h3>
+    <div class="form-group">
+      <label>Имя гостя</label>
+      <input type="text" placeholder="Иван Иванов">
+    </div>
+    <div class="form-group">
+      <label>Телефон</label>
+      <input type="tel" placeholder="+996 ...">
+    </div>
+    <div class="form-group">
+      <label>Дата и время</label>
+      <input type="datetime-local">
+    </div>
+    <div class="form-group">
+      <label>Количество гостей</label>
+      <select>
+        <option>2 персоны</option>
+        <option>4 персоны</option>
+        <option>6 персон</option>
+        <option>Больше 6</option>
+      </select>
+    </div>
+    <button class="modal-btn" onclick="alert('Стол успешно забронирован. Ждем вас в L\'Ambre!')">Подтвердить</button>
+  </div>
+</div>
+
+<script>
+// ============ ДАННЫЕ БАРА ============
+const barData = [
+  // Коктейли
+  { id: 1, category: 'cocktails', name: 'Old Fashioned', desc: 'Бурбон, тростниковый сахар, биттер Angostura, апельсиновая цедра.', price: '650 сом', img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&auto=format&fit=crop' },
+  { id: 2, category: 'cocktails', name: 'Negroni', desc: 'Джин, красный вермут, биттер Campari. Классика итальянского бара.', price: '700 сом', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=400&auto=format&fit=crop' },
+  { id: 3, category: 'cocktails', name: 'Whiskey Sour', desc: 'Виски, свежевыжатый лимон, сахарный сироп, пена из белка.', price: '680 сом', img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=400&auto=format&fit=crop' },
+  { id: 4, category: 'cocktails', name: 'Espresso Martini', desc: 'Водка, кофейный ликер, свежесваренный эспрессо.', price: '720 сом', img: 'https://images.unsplash.com/photo-1545438102-799c3991ffb2?q=80&w=400&auto=format&fit=crop' },
+  { id: 5, category: 'cocktails', name: 'Mojito', desc: 'Ром, мята, лайм, тростниковый сахар, содовая.', price: '600 сом', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=400&auto=format&fit=crop' },
+  { id: 6, category: 'cocktails', name: 'Aperol Spritz', desc: 'Aperol, просекко, содовая, апельсин.', price: '620 сом', img: 'https://images.unsplash.com/photo-1560512823-829485b8bf24?q=80&w=400&auto=format&fit=crop' },
+
+  // Вина
+  { id: 7, category: 'wines', name: 'Chablis Premier Cru', desc: 'Белое сухое, Франция. Минеральность и свежесть.', price: '3 500 сом', img: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=400&auto=format&fit=crop' },
+  { id: 8, category: 'wines', name: 'Barolo DOCG', desc: 'Красное сухое, Италия. Ноты вишни и трюфеля.', price: '5 200 сом', img: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=400&auto=format&fit=crop' },
+  { id: 9, category: 'wines', name: 'Champagne Brut', desc: 'Шампанское, Франция. Идеальный аперитив.', price: '6 000 сом', img: 'https://images.unsplash.com/photo-1592483648190-3ee3e0e1b6b1?q=80&w=400&auto=format&fit=crop' },
+
+  // Крепкий алкоголь
+  { id: 10, category: 'spirits', name: 'Macallan 12', desc: 'Односолодовый шотландский виски. Выдержка в бочках из-под хереса.', price: '800 сом', img: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?q=80&w=400&auto=format&fit=crop' },
+  { id: 11, category: 'spirits', name: 'Hennessy VS', desc: 'Коньяк, Франция. Ноты ванили и дуба.', price: '750 сом', img: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?q=80&w=400&auto=format&fit=crop' },
+  { id: 12, category: 'spirits', name: 'Patrón Silver', desc: 'Текила 100% агавы, Мексика.', price: '700 сом', img: 'https://images.unsplash.com/photo-1516535794938-6063878f08cc?q=80&w=400&auto=format&fit=crop' },
+  { id: 13, category: 'spirits', name: 'Grey Goose', desc: 'Премиальная французская водка.', price: '650 сом', img: 'https://images.unsplash.com/photo-1516535794938-6063878f08cc?q=80&w=400&auto=format&fit=crop' }
+];
+
+// ============ ДАННЫЕ КУХНИ ============
+const kitchenData = [
+  { id: 14, category: 'snacks', name: 'Тартар из говядины', desc: 'Мраморная говядина, каперсы, трюфельное масло, желток перепела.', price: '950 сом', img: 'https://images.unsplash.com/photo-1544025162-8111f4e17926?q=80&w=400&auto=format&fit=crop' },
+  { id: 15, category: 'snacks', name: 'Устрицы Fine de Claire', desc: 'Свежие устрицы с лимоном и соусом миньонет.', price: '1 200 сом', img: 'https://images.unsplash.com/photo-1599570087485-4e55b39e2222?q=80&w=400&auto=format&fit=crop' },
+  { id: 16, category: 'snacks', name: 'Фуа-гра', desc: 'Обжаренная фуа-гра с карамелизированным инжиром и бриошью.', price: '1 400 сом', img: 'https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=400&auto=format&fit=crop' },
+  { id: 17, category: 'snacks', name: 'Карпаччо из лосося', desc: 'Тонко нарезанный лосось, цитрусовый винегрет, укроп.', price: '850 сом', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=400&auto=format&fit=crop' },
+  
+  { id: 18, category: 'mains', name: 'Филе-миньон', desc: 'Говяжья вырезка, картофельное пюре с трюфелем, соус красное вино.', price: '2 800 сом', img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=400&auto=format&fit=crop' },
+  { id: 19, category: 'mains', name: 'Ягненок с розмарином', desc: 'Каре ягненка, пюре из батата, соус демиглас.', price: '2 400 сом', img: 'https://images.unsplash.com/photo-1544025162-8111f4e17926?q=80&w=400&auto=format&fit=crop' },
+  { id: 20, category: 'mains', name: 'Бургер с трюфелем', desc: 'Мраморная говядина, сыр бри, трюфельный майонез, картофель фри.', price: '1 200 сом', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=400&auto=format&fit=crop' },
+
+  { id: 21, category: 'desserts', name: 'Шоколадный фондан', desc: 'Теплый фондан с жидким центром, мороженое из ванили.', price: '650 сом', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=400&auto=format&fit=crop' },
+  { id: 22, category: 'desserts', name: 'Крем-брюле', desc: 'Классический французский десерт с хрустящей карамельной корочкой.', price: '550 сом', img: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?q=80&w=400&auto=format&fit=crop' }
+];
+
+let currentBarCategory = 'all';
+let currentKitchenCategory = 'all';
+
+// ============ РЕНДЕР БАРА ============
+function filterCategory(cat) {
+  currentBarCategory = cat;
+  document.querySelectorAll('#categories .cat-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  renderBar();
+}
+
+function renderBar() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  
+  const filtered = barData.filter(item => {
+    const matchCategory = currentBarCategory === 'all' || item.category === currentBarCategory;
+    const matchSearch = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+    return matchCategory && matchSearch;
+  });
+
+  const grid = document.getElementById('foodGrid');
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results">Напиток не найден</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(item => `
+    <div class="food-card">
+      <div class="food-img" style="background-image: url('${item.img}')"></div>
+      <div class="food-info">
+        <div class="food-header">
+          <h3 class="food-title">${item.name}</h3>
+          <span class="food-price">${item.price}</span>
+        </div>
+        <p class="food-desc">${item.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============ РЕНДЕР КУХНИ ============
+function filterKitchen(cat) {
+  currentKitchenCategory = cat;
+  document.querySelectorAll('#kitchenCategories .cat-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  renderKitchen();
+}
+
+function renderKitchen() {
+  const filtered = kitchenData.filter(item => {
+    return currentKitchenCategory === 'all' || item.category === currentKitchenCategory;
+  });
+
+  const grid = document.getElementById('kitchenGrid');
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results">Блюдо не найдено</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(item => `
+    <div class="food-card">
+      <div class="food-img" style="background-image: url('${item.img}')"></div>
+      <div class="food-info">
+        <div class="food-header">
+          <h3 class="food-title">${item.name}</h3>
+          <span class="food-price">${item.price}</span>
+        </div>
+        <p class="food-desc">${item.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ============ МОДАЛКА ============
+function openModal() {
+  document.getElementById('bookingModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('bookingModal').classList.remove('active');
+}
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ============ ИНИЦИАЛИЗАЦИЯ ============
+renderBar();
+renderKitchen();
+</script>
+</body>
+</html>
